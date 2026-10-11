@@ -2,9 +2,12 @@
 
 **Ocean-forced frontal ablation for glacier models.**
 
+[![PyPI](https://img.shields.io/pypi/v/tidewater.svg)](https://pypi.org/project/tidewater/)
+[![Documentation](https://readthedocs.org/projects/tidewater/badge/?version=latest)](https://tidewater.readthedocs.io)
+[![Tests](https://github.com/MuhammadShafeeque/tidewater/actions/workflows/tests.yml/badge.svg)](https://github.com/MuhammadShafeeque/tidewater/actions/workflows/tests.yml)
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
-[![Status: pre-release](https://img.shields.io/badge/status-pre--release-orange.svg)](#project-status)
+[![Status: alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#project-status)
 
 <!-- docs: intro -->
 `tidewater` makes the frontal ablation of a marine-terminating glacier depend
@@ -73,24 +76,30 @@ host model's own results.
 <!-- docs: getting-started -->
 ## Installation
 
-`tidewater` needs Python 3.11 or later. It is not on PyPI yet; install it from
-a clone of this repository:
+`tidewater` needs Python 3.11 or later:
 
 ```bash
-pip install -e .            # core
-pip install -e ".[teos10]"  # adds the TEOS-10 freezing point (gsw)
-pip install -e ".[test]"    # adds pytest
-pip install -e ".[plot]"    # adds matplotlib, for the examples' figures
+pip install tidewater            # core
+pip install "tidewater[teos10]"  # adds the TEOS-10 freezing point (gsw)
+pip install "tidewater[plot]"    # adds matplotlib, for the examples' figures
 ```
 
 Core dependencies: numpy, pandas, xarray, netCDF4, cftime, scipy.
+
+The examples and the tests are in the repository, not in the installed
+package. To run them or to change the code, install from a clone:
+
+```bash
+git clone https://github.com/MuhammadShafeeque/tidewater.git
+pip install -e "tidewater[test,plot]"
+```
 
 A host model is installed separately, into the same environment. For OGGM:
 
 ```bash
 git clone -b oggm-tidewater https://github.com/MuhammadShafeeque/oggmHydro.git
 pip install -e "oggmHydro[full]"
-pip install -e .
+pip install tidewater
 ```
 
 Released OGGM 1.6.3 and earlier are not supported by the OGGM adapter. PyGEM
@@ -277,9 +286,9 @@ application the package was developed on, and each is marked.
 | [docs/references.md](docs/references.md) | the source of every equation and constant in the code, with full references |
 | [src/tidewater/spec/SPEC.md](src/tidewater/spec/SPEC.md) | the laws as equations, with reference vectors for other languages |
 
-The same pages, with an API reference generated from the docstrings, build as
-a Sphinx site for Read the Docs (`.readthedocs.yaml`, `docs/conf.py`). To
-build it locally:
+The same pages, with an API reference generated from the docstrings, are
+online at [tidewater.readthedocs.io](https://tidewater.readthedocs.io). To
+build the site locally:
 
 ```bash
 pip install -e ".[docs]"
@@ -326,7 +335,7 @@ the reason:
 
 ## Project status
 
-Version 0.1.0.dev0, pre-release: names and signatures may still change.
+Version 0.1.0, the first release: names and signatures may still change.
 
 | Part | State |
 |---|---|

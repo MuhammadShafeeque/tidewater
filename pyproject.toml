@@ -1,21 +1,25 @@
 [build-system]
-requires = ["hatchling>=1.27"]
+requires = ["hatchling>=1.27", "hatch-fancy-pypi-readme>=24.1"]
 build-backend = "hatchling.build"
 
 [project]
 name = "tidewater"
-version = "0.1.0.dev0"
+version = "0.1.0"
 description = "ocean-forced frontal ablation for glacier models"
-readme = "README.md"
+dynamic = ["readme"]
 requires-python = ">=3.11"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 authors = [{ name = "Muhammad Shafeeque" }, { name = "tidewater contributors" }]
 keywords = ["glacier", "frontal ablation", "calving", "ocean thermal forcing"]
 classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
@@ -27,6 +31,11 @@ dependencies = [
     "scipy",
 ]
 
+[project.urls]
+Documentation = "https://tidewater.readthedocs.io"
+Repository = "https://github.com/MuhammadShafeeque/tidewater"
+Issues = "https://github.com/MuhammadShafeeque/tidewater/issues"
+
 [project.scripts]
 tidewater-forcing = "tidewater.forcing.cli:main"
 
@@ -35,6 +44,21 @@ teos10 = ["gsw"]
 test = ["pytest"]
 plot = ["matplotlib"]
 docs = ["sphinx>=7", "myst-parser", "furo"]
+
+# the README's relative links and its figure, pinned to the release tag for PyPI
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.md"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '\]\(docs/img/([^)]+)\.svg\)'
+replacement = '](https://raw.githubusercontent.com/MuhammadShafeeque/tidewater/v$HFPR_VERSION/docs/img/\1.png)'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '\]\((?!https?://|#)([^)]+)\)'
+replacement = '](https://github.com/MuhammadShafeeque/tidewater/blob/v$HFPR_VERSION/\1)'
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tidewater"]

@@ -52,7 +52,7 @@ There is one file per RGI region, `ocean_factor_<RR>.dat`, with a JSON sidecar
 (`tidewater.export.read_host_bundle` reads it all back):
 
 ```
-# tidewater 0.1.0.dev0 variable=ocean_factor units=1 region=01
+# tidewater 0.1.0 variable=ocean_factor units=1 region=01
 # start_month=10 label=end weights=days host=glogem time_resolution=monthly rgi_version=6.0 outside=stop
 # missing=-9999 n_glaciers=2 n_years=4 id_style=within_region
 id 2000 2001 2002 2003
