@@ -46,4 +46,5 @@ spec
 references
 api
 project
+changelog
 ```

@@ -9,6 +9,7 @@
 - [ ] `ruff check .` and `pytest` pass
 - [ ] New behaviour has a test
 - [ ] The documentation is updated and `sphinx-build -W docs <dir>` gives no warning
+- [ ] A change a user can notice has a line under "Unreleased" in `CHANGELOG.md`
 - [ ] Nothing outside `src/tidewater/hosts/` imports a glacier model
 - [ ] New parameters are arguments with a documented default
 - [ ] A change to a law comes with new reference vectors (`python -m tidewater.spec.make_vectors`)

@@ -286,6 +286,7 @@ application the package was developed on, and each is marked.
 | [docs/conventions.md](docs/conventions.md) | units, periods, model years, glacier ids and file formats |
 | [docs/references.md](docs/references.md) | the source of every equation and constant in the code, with full references |
 | [src/tidewater/spec/SPEC.md](src/tidewater/spec/SPEC.md) | the laws as equations, with reference vectors for other languages |
+| [CHANGELOG.md](CHANGELOG.md) | what changed in each release |
 
 The same pages, with an API reference generated from the docstrings, are
 online at [tidewater.readthedocs.io](https://tidewater.readthedocs.io). To
@@ -365,6 +366,9 @@ tracker of this repository. Three rules keep the package portable:
 - every parameter is an argument with a documented default, never a global;
 - a change to a law comes with updated reference vectors
   (`python -m tidewater.spec.make_vectors`) and a test.
+
+A change that a user can notice gets a line under "Unreleased" in
+`CHANGELOG.md`.
 
 A new host adapter goes in `src/tidewater/hosts/<host>/` with its tests in
 `tests/hosts/<host>/` and a page in `docs/`.
