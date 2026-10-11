@@ -1,12 +1,11 @@
 [build-system]
-requires = ["hatchling>=1.27", "hatch-fancy-pypi-readme>=24.1"]
+requires = ["hatchling>=1.27", "hatch-fancy-pypi-readme>=24.1", "hatch-vcs>=0.4"]
 build-backend = "hatchling.build"
 
 [project]
 name = "tidewater"
-version = "0.1.0"
 description = "ocean-forced frontal ablation for glacier models"
-dynamic = ["readme"]
+dynamic = ["version", "readme"]
 requires-python = ">=3.11"
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
@@ -45,6 +44,10 @@ teos10 = ["gsw"]
 test = ["pytest"]
 plot = ["matplotlib"]
 docs = ["sphinx>=7", "myst-parser", "furo"]
+
+# the version is the release tag
+[tool.hatch.version]
+source = "vcs"
 
 # the README's relative links and its figure, pinned to the release tag for PyPI
 [tool.hatch.metadata.hooks.fancy-pypi-readme]

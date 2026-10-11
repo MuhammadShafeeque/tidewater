@@ -3,4 +3,10 @@
 Submodules are imported on demand, for example ``import tidewater.timeconv``.
 """
 
-__version__ = "0.1.0"
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _version
+
+try:
+    __version__ = _version("tidewater")
+except PackageNotFoundError:  # run from a source tree that is not installed
+    __version__ = "unknown"

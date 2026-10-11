@@ -25,6 +25,9 @@ At a release that heading becomes the version and its date.
 
 ### Changed
 
+- The version number comes from the release tag: `pyproject.toml` and
+  `tidewater.__version__` no longer carry it. An install from a commit between
+  releases reports a development version that names the commit.
 - The README points to the bibliography of the documentation instead of
   carrying a reference list of its own.
 
