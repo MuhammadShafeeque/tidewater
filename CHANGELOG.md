@@ -11,7 +11,10 @@ At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
-## [0.2.0] - 2026-10-11
+## [0.3.0] - 2026-10-11
+
+Version 0.2.0 was tagged and archived on Zenodo but not published on PyPI;
+this release takes its place.
 
 ### Added
 
@@ -61,6 +64,6 @@ The first release.
   and the examples: one glacier through the whole chain on synthetic inputs
   and in each of the three hosts.
 
-[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.2.0
+[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.3.0
 [0.1.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.1.0
