@@ -1,14 +1,19 @@
 name: publish
 
+# a published release publishes its tag; a manual run on a tag publishes that
+# tag, and a manual run on a branch only builds and checks
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -16,6 +21,7 @@ jobs:
       - run: python -m build
       - run: twine check --strict dist/*
       - name: the tag is the package version
+        if: github.ref_type == 'tag'
         run: test -f "dist/tidewater-${GITHUB_REF_NAME#v}.tar.gz"
       - uses: actions/upload-artifact@v4
         with:
@@ -24,6 +30,7 @@ jobs:
 
   pypi:
     needs: build
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     environment:
       name: pypi
