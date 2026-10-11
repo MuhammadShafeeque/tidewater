@@ -120,7 +120,7 @@ synthetic.
 | Dataset | Used for | Licence | Shipped |
 |---|---|---|---|
 | GLORYS12, Global Ocean Physics Reanalysis (E.U. Copernicus Marine Service Information, 2018; Lellouche et al., 2021) | ocean, 1993 onwards; reference of the bias correction | Copernicus Marine Service licence: free use and redistribution, crediting "E.U. Copernicus Marine Service Information" (derived products: "Generated using E.U. Copernicus Marine Service Information") | thermal forcing at the front, 0-60 m, monthly |
-| MPI-ESM1-2-HR, CMIP6 historical and ScenarioMIP SSP1-2.6 and SSP5-8.5 (Jungclaus et al., 2019; Schupfner et al., 2019; Müller et al., 2018) | ocean and climate, projection | CC BY 4.0 | thermal forcing at the front, 0-60 m, monthly, bias-corrected |
+| MPI-ESM1-2-HR, CMIP6 historical and ScenarioMIP SSP1-2.6 and SSP5-8.5 (Jungclaus et al., 2019; Schupfner et al., 2019; Müller et al., 2018) | ocean and climate, projection | CC BY 4.0 in the CMIP6 terms of use; the `license` attribute of the files, written in 2019, says CC BY-SA 4.0. Both allow redistribution with credit | thermal forcing at the front, 0-60 m, monthly, bias-corrected |
 | ERA5 (Hersbach et al., 2020) | climate, historical | CC BY 4.0, crediting the Copernicus Climate Change Service | no |
 | BedMachine Greenland v6 (Morlighem et al., 2025; Morlighem et al., 2017) | bed and water depth at the front | openly shared without restriction; the data citation is required | water depth within about 16 km of the front |
 | RGI 7.0 and RGI 6.0 (RGI 7.0 Consortium, 2023; RGI Consortium, 2017) | glacier outline | CC BY 4.0 | the outline and terminus point of RGI 7.0 |
