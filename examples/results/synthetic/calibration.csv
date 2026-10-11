@@ -1,0 +1,7 @@
+host,run,calving_k_yr,k_static_yr,flux,ratio,passes,converged
+toy: law each step,control,7.04097,6.50361,0.00602915,0.99774,1,True
+toy: law each step,ocean,7.06205,6.50361,0.00602865,0.997658,1,True
+toy: yearly constant,control,6.98984,6.50361,0.00603148,0.998126,1,True
+toy: yearly constant,ocean,6.98648,6.50361,0.00603155,0.998138,1,True
+toy: factor table,control,6.98984,6.50361,0.00603148,0.998126,1,True
+toy: factor table,ocean,6.9786,6.50361,0.00603172,0.998166,1,True

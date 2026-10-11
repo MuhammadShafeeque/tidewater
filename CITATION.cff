@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "tidewater: ocean-forced frontal ablation for glacier models"
+type: software
+version: 0.1.0.dev0
+license: BSD-3-Clause
+authors:
+  - family-names: Shafeeque
+    given-names: Muhammad
+  - name: "tidewater contributors"
+keywords:
+  - glacier model
+  - frontal ablation
+  - calving
+  - ocean thermal forcing
+# A DOI and the preferred citation are added at the first archived release.

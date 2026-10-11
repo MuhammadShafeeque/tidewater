@@ -1,0 +1,122 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install ".[test,plot,teos10]" ruff
+      - run: ruff check .
+      - run: pytest -rs
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install ".[docs]"
+      - run: sphinx-build -W --keep-going docs "$RUNNER_TEMP/html"
+
+  oggm:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+      OGGM_USE_MULTIPROCESSING: "0"
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install "oggm[full] @ git+https://github.com/MuhammadShafeeque/oggmHydro.git@oggm-tidewater"
+          pip install ".[test]"
+      # OGGM's test helpers delete other directories under their test directory
+      - run: |
+          export HOME="$RUNNER_TEMP/home" TMPDIR=/tmp/tw
+          mkdir -p "$HOME" "$TMPDIR"
+          pytest tests/hosts/oggm tests/test_examples.py --run-slow -rs
+
+  pygem:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pygem:
+          - "pygem @ git+https://github.com/PyGEM-Community/PyGEM.git@v1.1.0"
+          - "pygem @ git+https://github.com/MuhammadShafeeque/PyGEM-tidewater.git@pygem-tidewater"
+    env:
+      HOME: /tmp/pygem-home
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install "${{ matrix.pygem }}" "matplotlib<3.10" ".[test]"
+      # PyGEM checks its data paths on import: a config with an empty data tree
+      - run: |
+          mkdir -p "$HOME"
+          python - <<'EOF'
+          import os
+          from pathlib import Path
+
+          from pygem.setup.config import ConfigManager
+
+          cm = ConfigManager(overwrite=True, check_paths=False)
+          root = Path.home() / "PyGEM" / "data"
+          cm.update_config({"root": str(root)})
+
+
+          def relpaths(d):
+              for k, v in d.items():
+                  if isinstance(v, dict):
+                      yield from relpaths(v)
+                  elif k.endswith("_relpath") and isinstance(v, str):
+                      yield v
+
+
+          for rel in relpaths(cm.read_config(validate=False)):
+              path = root / rel.strip(os.sep)
+              if path.suffix:
+                  path.parent.mkdir(parents=True, exist_ok=True)
+                  path.touch()
+              else:
+                  path.mkdir(parents=True, exist_ok=True)
+          EOF
+      - run: pytest tests/hosts/pygem tests/test_examples.py -rs
+
+  glogem:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: MuhammadShafeeque/GloGEM-tidewater
+          ref: glogem-tidewater
+          path: glogem
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gnudatalanguage
+      - run: pip install ".[test]"
+      - run: GLOGEM_DIR="$GITHUB_WORKSPACE/glogem" pytest tests/hosts/glogem -rs

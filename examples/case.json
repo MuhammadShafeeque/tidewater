@@ -1,0 +1,45 @@
+{
+  "glacier": {
+    "rgi7_id": "RGI2000-v7.0-G-05-09345",
+    "rgi6_id": "RGI60-05.13043",
+    "region": "Greenland periphery, east",
+    "lon": -29.52,
+    "lat": 68.30,
+    "area_km2": 21.09,
+    "front_width_m": 566,
+    "front_water_depth_m": 38,
+    "front_thickness_m": 48
+  },
+  "ocean": {
+    "historical": "GLORYS12",
+    "projection": "MPI-ESM1-2-HR",
+    "scenarios": ["ssp126", "ssp585"],
+    "band": "shallow_0_60",
+    "band_top_m": 0,
+    "band_bottom_m": 60,
+    "bias_correction_period": [1995, 2014]
+  },
+  "law": {"name": "tf_power", "gamma": 1.18, "tf_fraction": 1.0},
+  "periods": {
+    "calibration": [2000, 2009],
+    "evaluation": [2010, 2019],
+    "mass_balance_calibration": [2000, 2019],
+    "projection": [2020, 2100]
+  },
+  "frontal_ablation_targets": [
+    {"period": [2000, 2009], "gt_yr": 0.0060428, "error_gt_yr": 0.00194556},
+    {"period": [2010, 2019], "gt_yr": 0.00786808, "error_gt_yr": 0.00167343}
+  ],
+  "mass_change_targets": [
+    {"period": [2000, 2009], "gt_yr": -0.01828433, "error_gt_yr": 0.00420357},
+    {"period": [2010, 2019], "gt_yr": -0.01907332, "error_gt_yr": 0.00425484},
+    {"period": [2000, 2019], "gt_yr": -0.01867882, "error_gt_yr": 0.002571}
+  ],
+  "sources": {
+    "frontal_ablation_targets": "Kochtitzky et al. (2022), Dataset S1",
+    "geodetic_mass_change": "Hugonnet et al. (2021)",
+    "bed": "BedMachine Greenland v6",
+    "outline": "RGI 7.0 and RGI 6.0",
+    "climate": "ERA5 (historical), MPI-ESM1-2-HR (projection)"
+  }
+}

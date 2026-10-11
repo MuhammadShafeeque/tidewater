@@ -1,0 +1,53 @@
+{
+ "synthetic": true,
+ "reference_product": "synthetic reanalysis",
+ "model_product": "synthetic climate model",
+ "band": "shallow_0_60",
+ "band_top_m": 0,
+ "band_bottom_m": 60,
+ "gamma": 1.18,
+ "tf_ref_degc": 1.2430304405803867,
+ "tf_ref_period": [
+  2000,
+  2009
+ ],
+ "bias_correction_period": [
+  1995,
+  2014
+ ],
+ "bias_offset_degc": {
+  "shallow_0_60": 0.4108384026277533
+ },
+ "periods": {
+  "calibration": [
+   2000,
+   2009
+  ],
+  "evaluation": [
+   2010,
+   2019
+  ],
+  "projection": [
+   2020,
+   2100
+  ]
+ },
+ "frontal_ablation_targets": [
+  {
+   "period": [
+    2000,
+    2009
+   ],
+   "gt_yr": 0.0060428,
+   "error_gt_yr": 0.00194556
+  },
+  {
+   "period": [
+    2010,
+    2019
+   ],
+   "gt_yr": 0.00786808,
+   "error_gt_yr": 0.00167343
+  }
+ ]
+}

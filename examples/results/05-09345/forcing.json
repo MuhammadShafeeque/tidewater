@@ -1,0 +1,85 @@
+{
+ "reference_product": "GLORYS12",
+ "model_product": "MPI-ESM1-2-HR",
+ "band": "0-60 m",
+ "band_top_m": 0.0,
+ "band_bottom_m": 60.0,
+ "gamma": 1.18,
+ "tf_ref_degc": 1.505932049270805,
+ "tf_ref_period": [
+  2000,
+  2010
+ ],
+ "bias_correction_period": [
+  1995,
+  2014
+ ],
+ "bias_offset_degc": {
+  "0-60 m": 0.20643508434295654,
+  "ismip6": 1.6212817430496216,
+  "moller": 1.9504873752593994
+ },
+ "periods": {
+  "calibration": [
+   2000,
+   2009
+  ],
+  "evaluation": [
+   2010,
+   2019
+  ],
+  "projection": [
+   2020,
+   2100
+  ],
+  "mass_balance_calibration": [
+   2000,
+   2019
+  ]
+ },
+ "frontal_ablation_targets": [
+  {
+   "period": [
+    2000,
+    2009
+   ],
+   "gt_yr": 0.0060428,
+   "error_gt_yr": 0.00194556
+  },
+  {
+   "period": [
+    2010,
+    2019
+   ],
+   "gt_yr": 0.00786808,
+   "error_gt_yr": 0.00167343
+  }
+ ],
+ "mass_change_targets": [
+  {
+   "period": [
+    2000,
+    2009
+   ],
+   "gt_yr": -0.01828433,
+   "error_gt_yr": 0.00420357
+  },
+  {
+   "period": [
+    2010,
+    2019
+   ],
+   "gt_yr": -0.01907332,
+   "error_gt_yr": 0.00425484
+  },
+  {
+   "period": [
+    2000,
+    2019
+   ],
+   "gt_yr": -0.01867882,
+   "error_gt_yr": 0.002571
+  }
+ ],
+ "synthetic": false
+}
