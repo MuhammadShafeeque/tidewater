@@ -23,6 +23,9 @@ jobs:
       - name: the tag is the package version
         if: github.ref_type == 'tag'
         run: test -f "dist/tidewater-${GITHUB_REF_NAME#v}.tar.gz"
+      - name: the changelog has a section for the tag
+        if: github.ref_type == 'tag'
+        run: grep -q "^## \[${GITHUB_REF_NAME#v}\]" CHANGELOG.md
       - uses: actions/upload-artifact@v4
         with:
           name: dist
