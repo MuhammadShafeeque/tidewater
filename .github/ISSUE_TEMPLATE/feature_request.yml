@@ -1,0 +1,27 @@
+name: Feature request
+description: A new law, ocean product, host model or option
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What you need
+      description: The problem you want to solve, and for which glaciers, region or host model.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: How it could look for the user, for example a function, an argument or a command.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers, data sets or code that the change builds on.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Contribution
+      options:
+        - label: I can open a pull request for this

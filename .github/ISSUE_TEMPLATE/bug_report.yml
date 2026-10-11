@@ -1,0 +1,49 @@
+name: Bug report
+description: A wrong result, an error or a crash
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you ran, what you got, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Minimal example
+      description: The smallest code or command that shows it, with the input values.
+      render: python
+  - type: textarea
+    id: output
+    attributes:
+      label: Full error message or output
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: tidewater version
+      description: The output of `python -c "import tidewater; print(tidewater.__version__)"`, or the commit if you installed from a clone.
+    validations:
+      required: true
+  - type: dropdown
+    id: host
+    attributes:
+      label: Host model
+      options:
+        - None (core only)
+        - OGGM
+        - PyGEM
+        - GloGEM
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: host-version
+    attributes:
+      label: Host model version or branch
+  - type: input
+    id: system
+    attributes:
+      label: Python version and operating system

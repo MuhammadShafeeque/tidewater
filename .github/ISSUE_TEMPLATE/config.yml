@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://tidewater.readthedocs.io
+    about: Getting started, the laws, the host models and the API reference

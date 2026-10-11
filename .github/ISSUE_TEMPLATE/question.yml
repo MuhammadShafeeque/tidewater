@@ -1,0 +1,16 @@
+name: Question
+description: How to use the package, or how it works
+labels: [question]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What you want to do, and what you have tried or read so far.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: tidewater version and host model
+      description: If the question is about a run, for example `0.1.0, OGGM`.
