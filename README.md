@@ -203,9 +203,9 @@ Five laws form a nested family around the constant-k law `q = k d h w`
 |---|---|
 | `constant` | `q = k d h w` |
 | `tf_power` | `k(t) = k0 ((1 - a) + a (TF(t) / TF_ref)^gamma)` |
-| `melt_calving` | a submarine melt rate after Rignot et al. (2016) added to the calving term, `q = w d (k_c h + lambda m)` |
+| `melt_calving` | a submarine melt rate after [Rignot et al. (2016)](docs/references.md#references) added to the calving term, `q = w d (k_c h + lambda m)` |
 | `sea_ice` | `melt_calving` with the melt term multiplied by the open-water fraction to the power `delta` |
-| `larger_of` | the larger of the two speeds, `q = w d max(k_c h, lambda m)`, after Malles et al. (2025) |
+| `larger_of` | the larger of the two speeds, `q = w d max(k_c h, lambda m)`, after [Malles et al. (2025)](docs/references.md#references) |
 
 Each law reduces to the one before it for a value of its parameters
 (`TF = TF_ref`, `gamma = 0` or `a = 0`; `lambda = 0`; `delta = 0`), and
@@ -379,26 +379,14 @@ own on that page.
 
 ## References
 
-The two works the laws build on most directly are listed here. The source of
-every equation and constant in the code is in
-[docs/references.md](docs/references.md).
-
-- Malles, J.-H., Marzeion, B., and Myers, P. G. (2025). Freshwater input from
-  glacier melt outside Greenland alters modeled northern high-latitude ocean
-  circulation. *Earth System Dynamics*, 16, 347-377.
-  https://doi.org/10.5194/esd-16-347-2025
-- Rignot, E., Xu, Y., Menemenlis, D., Mouginot, J., Scheuchl, B., Li, X.,
-  Morlighem, M., Seroussi, H., van den Broeke, M., Fenty, I., Cai, C., An, L.,
-  and de Fleurian, B. (2016). Modeling of ocean-induced ice melt rates of five
-  west Greenland glaciers over the past two decades. *Geophysical Research
-  Letters*, 43, 6374-6382. https://doi.org/10.1002/2016GL068784
+The works this package builds on are in one list, the
+[bibliography of the documentation](docs/references.md#references); the same
+page gives the source of every equation and constant in the code.
 
 ## Licence and acknowledgements
 
 BSD-3-Clause, see [LICENSE](LICENSE).
 
-`tidewater` was developed first as the `ocean_calving` scheme (version 1.0) on
-the Open Global Glacier Model (OGGM), and it builds on the k-calving
-parameterization that OGGM, PyGEM and GloGEM each provide. It is an
-independent project and is not developed or endorsed by the teams of those
-models.
+`tidewater` builds on the k-calving parameterization that OGGM, PyGEM and
+GloGEM each provide. It is an independent project and is not developed or
+endorsed by the teams of those models.
