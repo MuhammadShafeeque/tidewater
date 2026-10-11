@@ -11,6 +11,8 @@ At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-11
+
 ### Added
 
 - `examples/fetch_data.py` fetches the results and the inputs of the example
@@ -28,6 +30,8 @@ At a release that heading becomes the version and its date.
 - The version number comes from the release tag: `pyproject.toml` and
   `tidewater.__version__` no longer carry it. An install from a commit between
   releases reports a development version that names the commit.
+- `CITATION.cff` and the README no longer state a version number; the version
+  of an archived release is on its Zenodo page.
 - The README points to the bibliography of the documentation instead of
   carrying a reference list of its own.
 
@@ -57,5 +61,6 @@ The first release.
   and the examples: one glacier through the whole chain on synthetic inputs
   and in each of the three hosts.
 
-[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.2.0
 [0.1.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.1.0

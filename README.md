@@ -337,7 +337,7 @@ the reason:
 
 ## Project status
 
-Version 0.1.0, the first release: names and signatures may still change.
+The package is in alpha: names and signatures may still change.
 
 | Part | State |
 |---|---|
@@ -369,6 +369,11 @@ tracker of this repository. Three rules keep the package portable:
 
 A change that a user can notice gets a line under "Unreleased" in
 `CHANGELOG.md`.
+
+A release is two steps: the "Unreleased" heading of `CHANGELOG.md` becomes the
+version and its date, and a GitHub release is published with the tag
+`vX.Y.Z`. The package version, the upload to PyPI, the documentation and the
+Zenodo archive follow from the tag.
 
 A new host adapter goes in `src/tidewater/hosts/<host>/` with its tests in
 `tests/hosts/<host>/` and a page in `docs/`.

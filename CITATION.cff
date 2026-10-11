@@ -2,9 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata below."
 title: "tidewater: ocean-forced frontal ablation for glacier models"
 type: software
-version: 0.1.0
 doi: 10.5281/zenodo.23296214
-date-released: 2026-10-11
 license: BSD-3-Clause
 repository-code: "https://github.com/MuhammadShafeeque/tidewater"
 url: "https://tidewater.readthedocs.io"
