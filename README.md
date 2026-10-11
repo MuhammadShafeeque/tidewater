@@ -5,6 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/tidewater.svg)](https://pypi.org/project/tidewater/)
 [![Documentation](https://readthedocs.org/projects/tidewater/badge/?version=latest)](https://tidewater.readthedocs.io)
 [![Tests](https://github.com/MuhammadShafeeque/tidewater/actions/workflows/tests.yml/badge.svg)](https://github.com/MuhammadShafeeque/tidewater/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23296214.svg)](https://doi.org/10.5281/zenodo.23296214)
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
 [![Status: alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#project-status)
@@ -370,8 +371,11 @@ A new host adapter goes in `src/tidewater/hosts/<host>/` with its tests in
 
 ## Citing
 
-Please cite the software using [CITATION.cff](CITATION.cff). A DOI and the
-preferred citation will be added with the first archived release.
+Please cite the software using [CITATION.cff](CITATION.cff). The releases are
+archived on Zenodo: the DOI
+[10.5281/zenodo.23296214](https://doi.org/10.5281/zenodo.23296214) stands for
+all versions and resolves to the latest one, and each release has a DOI of its
+own on that page.
 
 ## References
 
