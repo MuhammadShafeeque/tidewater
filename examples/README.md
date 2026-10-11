@@ -13,7 +13,15 @@ range, the law, the periods, and the frontal ablation and mass change targets.
 | `pygem/` | the law and the yearly factors, then PyGEM's run script | PyGEM for the run |
 | `glogem/` | the factor tables and the `config.pro` lines | IDL and GloGEM for the run |
 | `results/` | result files that the figures read | |
+| `fetch_data.py` | fetches the results and the inputs of the host runs from the data home, with checksums | an internet connection |
 
 Every script reads a results directory with `forcing.csv` and
 `forcing.json`; the default is `results/synthetic`. The documentation page
 "Examples" shows the figures.
+
+The result files of the example glacier are shipped. Its inputs (ocean
+records, climate cuts, thickness, the glacier directory) and the full runs of
+the three hosts are in the data home,
+<https://cluster.klima.uni-bremen.de/~mshafeeque/tidewater/>, with the scripts
+that made them. `python examples/fetch_data.py inputs --to DIR` fetches the
+inputs; `data_files.csv` lists the files with their checksums.

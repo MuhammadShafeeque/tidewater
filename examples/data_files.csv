@@ -1,0 +1,10 @@
+set,path,target,size,sha256
+results,examples/05-09345/forcing.csv,forcing.csv,120671,d7cd23eb898c0c6cce6c4ad522b95b71474077de9f9a0d398fffe3633f58c22d
+results,examples/05-09345/forcing.json,forcing.json,1182,3e56fe3f5e205f2de92d517bd23fa590c41149e98690d06ebfa1f2081b910134
+results,examples/05-09345/glogem.csv,glogem.csv,46406,33bc59498f6ce5108fad9550963d6744e41a37d6d1a0ee7d473284b9dc830703
+results,examples/05-09345/map/front.csv,map/front.csv,126,a55b75b6d31cc51c7e77204a22fe781d39a062c39fe8bb495eabdd93fa07887a
+results,examples/05-09345/map/ocean_cells.csv,map/ocean_cells.csv,96,7f3fe1c86946571b78438ac51b39b4f04ee9364858b5a1a4f006ab44f4775845
+results,examples/05-09345/map/outline.csv,map/outline.csv,20138,73276bca6b1e99b7024f496a92ee416c11db208ddd698e74e44abfd1f6ed8473
+results,examples/05-09345/map/water_depth.nc,map/water_depth.nc,418162,7397fdbaea4a4232cb19ced498a48d3676156324371473cd65cd1795cecc53aa
+results,examples/05-09345/oggm.csv,oggm.csv,41629,caaff209f4fcbc05cc8d4d9d58a5957d39b91c1e3beec31af3cfbabceff05b50
+results,examples/05-09345/pygem.csv,pygem.csv,47609,6f8fde50f15deab28e1793e24091ac7a277dd190e803f889888fb34accd70d3b

@@ -46,6 +46,27 @@ def test_shipped_synthetic_results_are_complete():
     assert len(list(SYNTHETIC.glob("toy_*.csv"))) == 3
 
 
+def test_fetch_data_list_matches_the_shipped_results():
+    fetch = load(EXAMPLES / "fetch_data.py", "tw_fetch_data")
+    rows = [r for r in fetch.read_files() if r["set"] == "results"]
+    assert len(rows) == 9
+    for r in rows:
+        assert fetch.sha256(EXAMPLES / "results" / "05-09345" / r["target"]) == r["sha256"], r["target"]
+
+
+def test_fetch_data_checks_the_checksum(tmp_path):
+    fetch = load(EXAMPLES / "fetch_data.py", "tw_fetch_data")
+    (tmp_path / "home").mkdir()
+    (tmp_path / "home" / "a.txt").write_text("a")
+    row = {"path": "a.txt", "target": "sub/a.txt", "sha256": fetch.sha256(tmp_path / "home" / "a.txt")}
+    url = (tmp_path / "home").as_uri()
+    assert fetch.fetch([row], tmp_path / "out", url) == 1
+    assert fetch.fetch([row], tmp_path / "out", url) == 0
+    with pytest.raises(ValueError):
+        fetch.fetch([dict(row, target="b.txt", sha256="0" * 64)], tmp_path / "out", url)
+    assert not (tmp_path / "out" / "b.txt.part").exists()
+
+
 def test_glogem_example_writes_tables(tmp_path):
     ex = load(EXAMPLES / "glogem" / "run_glogem.py", "tw_example_glogem")
     factors = ex.main(SYNTHETIC, tmp_path)
