@@ -3,7 +3,7 @@
 The laws themselves have no geography. Some default values do: they were
 derived for, or first used on, glaciers in Greenland. Outside Greenland they
 are a starting point to be checked, not a calibrated value. `tidewater` ships
-no parameter set for any other region.
+one further set, for Svalbard (below).
 
 ## The values with a Greenland origin
 
@@ -49,9 +49,20 @@ register_region("my_region", calving_tf_exponent=1.0,
 params = OceanParams.for_region("my_region", ocean_sea_level=0.4)
 ```
 
-`register_region("greenland", ...)` is the only set shipped, and it holds the
-defaults above. `OceanParams.from_mapping(mapping)` reads the same fields from
-a host's configuration.
+Two sets are shipped. `greenland` holds the defaults above. `svalbard`
+changes two of them: the exponent `gamma` of `tf_power` is 0.9, fitted on
+monthly frontal ablation of tidewater glaciers in Svalbard over 2016 to 2024
+with a 1/12 degree ocean reanalysis read in the `shallow_0_60` band at the
+nearest cell with water over that band, and the reference period is 2016 to
+2024, the period of that fit. The exponent belongs to that ocean product,
+cell rule and band together; with another of the three, fit it again.
+
+```python
+params = OceanParams.for_region("svalbard", calving_law="tf_power")
+```
+
+`OceanParams.from_mapping(mapping)` reads the same fields from a host's
+configuration.
 
 The footprint arguments are arguments of `forcing.footprint.reduce_site`, not
 of `OceanParams`; pass them per call.

@@ -11,6 +11,12 @@ At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
+### Added
+
+- A parameter set for Svalbard, `OceanParams.for_region("svalbard")`: the
+  exponent of `tf_power` is 0.9 and the reference period 2016 to 2024; the
+  other values are the defaults. The defaults are unchanged.
+
 ## [1.0.1] - 2026-10-12
 
 Version 1.0.0 was tagged and archived on Zenodo but not published on PyPI;
