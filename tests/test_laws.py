@@ -211,7 +211,7 @@ def test_tf_power_reduces_to_the_control(state, years):
     """TF == TF_ref for all t  =>  identical to the control. The nesting check."""
     model, fl, i = state
     law = TFPower(years, np.full_like(years, 1.5), tf_ref=1.5, gamma=1.18)
-    assert law(model, fl, i) == pytest.approx(control_flux(model, fl, i), rel=1e-12)
+    assert law(model, fl, i) == control_flux(model, fl, i)
 
 
 def test_units_are_m3_per_second(state, years):
@@ -281,7 +281,37 @@ def test_monotone_in_tf(state, years):
 def test_gamma_zero_is_the_control(state, years):
     model, fl, i = state
     law = TFPower(years, np.full_like(years, 4.2), tf_ref=1.5, gamma=0.)
-    assert law(model, fl, i) == pytest.approx(control_flux(model, fl, i))
+    assert law(model, fl, i) == control_flux(model, fl, i)
+
+
+def test_gamma_zero_and_a_zero_are_the_control_to_the_bit(years):
+    """Over fronts and times, the same float as the control, not just close."""
+    rng = np.random.default_rng(0)
+    tf = 1.5 + 2.5 * np.sin(2 * np.pi * years / 3.)
+    n = 2000
+    surface = rng.uniform(1., 80., n)
+    thick = surface + rng.uniform(1., 800., n)
+    width = rng.uniform(50., 6000., n)
+    k = rng.uniform(0.05, 8., n)
+    level = rng.uniform(-1., 1., n)
+    yr = rng.uniform(years[0], years[-1], n)
+    laws = [TFPower(years, tf, tf_ref=1.7, gamma=0.),
+            TFPower(years, tf, tf_ref=1.7, gamma=1.18, tf_fraction=0.)]
+    control = ConstantK()
+    for j in range(n):
+        model = FakeModel(calving_k=k[j], water_level=level[j], yr=yr[j])
+        fl = FakeFlowline(thick[j], surface[j], width[j])
+        want = control(model, fl, 0)
+        assert want == control_flux(model, fl, 0)
+        h, d, w = thick[j], thick[j] - (surface[j] - level[j]), width[j]
+        for law in laws:
+            assert law(model, fl, 0) == want
+            assert law.flux(h, d, w, yr[j], k=k[j]) == \
+                ConstantK(k=k[j]).flux(h, d, w)
+    d = thick - (surface - level)
+    for law in laws:
+        np.testing.assert_array_equal(law.fluxes(thick, d, width, yr, k=k),
+                                      ConstantK().fluxes(thick, d, width, k=k))
 
 
 def test_tf_fraction_nests_the_control_and_the_power_law(state, years):
@@ -289,8 +319,7 @@ def test_tf_fraction_nests_the_control_and_the_power_law(state, years):
     model, fl, i = state
     tf = np.full_like(years, 4.2)
     stock = control_flux(model, fl, i)
-    assert TFPower(years, tf, tf_ref=1.5, tf_fraction=0.)(model, fl, i) == \
-        pytest.approx(stock)
+    assert TFPower(years, tf, tf_ref=1.5, tf_fraction=0.)(model, fl, i) == stock
     full = TFPower(years, tf, tf_ref=1.5)(model, fl, i)
     assert TFPower(years, tf, tf_ref=1.5, tf_fraction=1.)(model, fl, i) == full
     half = TFPower(years, tf, tf_ref=1.5, tf_fraction=0.5)(model, fl, i)

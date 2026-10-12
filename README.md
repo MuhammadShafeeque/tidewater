@@ -211,6 +211,10 @@ Each law reduces to the one before it for a value of its parameters
 (`TF = TF_ref`, `gamma = 0` or `a = 0`; `lambda = 0`; `delta = 0`), and
 `larger_of` reduces to the constant-k law at `lambda = 0`. A host can therefore
 switch the ocean on gradually and compare each step with its present results.
+At `gamma = 0`, `a = 0` or `TF = TF_ref`, `tf_power` gives the same
+floating-point number as the constant-k law, so a host that calls the law at
+each time step runs exactly as it does with its own law; the other reductions
+hold to rounding.
 The thermal forcing is clipped at zero before any power. The freezing point is
 linear in salinity and depth by default; the TEOS-10 form is available with
 the `teos10` extra.

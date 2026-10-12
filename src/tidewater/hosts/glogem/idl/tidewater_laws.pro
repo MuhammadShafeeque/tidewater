@@ -141,8 +141,9 @@ function tw_law_flux, law, k, h, d, w, tf, tf_ref = tf_ref, gamma = gamma, $
   if total(law eq ['tf_power', 'melt_calving', 'sea_ice', 'larger_of']) eq 0 then $
     message, 'unknown law ' + string(law)
   if law eq 'tf_power' then begin
-    u_c = k_s * tw_tf_scaling(tf > 0d, tf_ref, gamma, tf_fraction) * h
-    u_m = 0d
+    ; in the order of 'constant', so gamma = 0 or a = 0 is the same number
+    k_t = k_s * tw_tf_scaling(tf > 0d, tf_ref, gamma, tf_fraction)
+    return, (k_t * d * h * w) > 0d
   endif else begin
     q = n_elements(q_sg) gt 0 ? tw_discharge_per_front_area(q_sg, d, w) : 0d
     u_c = k_s * h
