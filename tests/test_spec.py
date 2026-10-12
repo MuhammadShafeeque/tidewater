@@ -107,17 +107,15 @@ def _law(name, c):
     if d <= 0 or h <= 0:
         return 0., 0.
     if name == 'tf_power':
-        u_c = k_s * _scaling(c['tf'], c['tf_ref'], c['gamma'],
-                             c['tf_fraction']) * h
-        u_m = 0.
-    else:
-        q = _discharge(c['q_sg'], d, w) if 'q_sg' in c else 0.
-        u_c = k_s * h
-        u_m = c['lam'] * (_mdot(d, q, max(c['tf'], 0.), c) / DAY)
-        if name == 'sea_ice':
-            u_m = max(c['open_water'], 0.) ** c['delta'] * u_m
-        if name == 'larger_of':
-            u_c, u_m = (u_c, 0.) if u_c >= u_m else (0., u_m)
+        k_t = k_s * _scaling(c['tf'], c['tf_ref'], c['gamma'], c['tf_fraction'])
+        return max(k_t * d * h * w, 0.), 0.
+    q = _discharge(c['q_sg'], d, w) if 'q_sg' in c else 0.
+    u_c = k_s * h
+    u_m = c['lam'] * (_mdot(d, q, max(c['tf'], 0.), c) / DAY)
+    if name == 'sea_ice':
+        u_m = max(c['open_water'], 0.) ** c['delta'] * u_m
+    if name == 'larger_of':
+        u_c, u_m = (u_c, 0.) if u_c >= u_m else (0., u_m)
     total = u_c + u_m
     share = min(max(u_m / total, 0.), 1.) if total > 0 else 0.
     q_f = max(total * d * w, 0.)

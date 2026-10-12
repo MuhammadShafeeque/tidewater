@@ -289,7 +289,8 @@ class _OceanCalvingLaw:
 
     Sub-classes implement :meth:`frontal_speed_components`, returning
     front-normal speeds in m s-1. This class multiplies by the submerged area:
-    ``k*d*h*w == (k*h) * (d*w)``.
+    ``k*d*h*w == (k*h) * (d*w)``. :class:`TFPower` multiplies in the order
+    of the control instead, so that it reduces to it to the bit.
 
     Parameters
     ----------
@@ -612,6 +613,17 @@ class TFPower(_OceanCalvingLaw):
     def frontal_speed_components(self, h, d, w, yr):
         k = self._k(self.k0)
         return k * self.scaling(yr) * h, 0.
+
+    def _flux(self, h, d, w, yr):
+        if type(self).frontal_speed_components is not \
+                TFPower.frontal_speed_components:
+            return super()._flux(h, d, w, yr)
+        if d <= 0 or h <= 0:
+            return 0., 0.
+        # the control's product in its order, so gamma = 0 or a = 0 is the
+        # control to the bit
+        k = self._k(self.k0) * self.scaling(yr)
+        return max(k * d * h * w, 0.), 0.
 
 
 class MeltPlusCalving(_OceanCalvingLaw):

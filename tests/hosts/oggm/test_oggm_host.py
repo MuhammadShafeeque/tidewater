@@ -174,7 +174,7 @@ def test_tf_power_reduces_to_stock_law(state, years):
     """TF == TF_ref for all t  =>  identical to the stock law. The nesting check."""
     model, fl, i = state
     law = TFPower(years, np.full_like(years, 1.5), tf_ref=1.5, gamma=1.18)
-    assert law(model, fl, i) == pytest.approx(k_calving_law(model, fl, i), rel=1e-12)
+    assert law(model, fl, i) == k_calving_law(model, fl, i)
 
 
 def test_units_are_m3_per_second(state, years):
@@ -214,7 +214,7 @@ def test_monotone_in_tf(state, years):
 def test_gamma_zero_is_the_control(state, years):
     model, fl, i = state
     law = TFPower(years, np.full_like(years, 4.2), tf_ref=1.5, gamma=0.)
-    assert law(model, fl, i) == pytest.approx(k_calving_law(model, fl, i))
+    assert law(model, fl, i) == k_calving_law(model, fl, i)
 
 
 def test_tf_fraction_nests_the_control_and_the_power_law(state, years):
@@ -222,8 +222,7 @@ def test_tf_fraction_nests_the_control_and_the_power_law(state, years):
     model, fl, i = state
     tf = np.full_like(years, 4.2)
     stock = k_calving_law(model, fl, i)
-    assert TFPower(years, tf, tf_ref=1.5, tf_fraction=0.)(model, fl, i) == \
-        pytest.approx(stock)
+    assert TFPower(years, tf, tf_ref=1.5, tf_fraction=0.)(model, fl, i) == stock
     full = TFPower(years, tf, tf_ref=1.5)(model, fl, i)
     assert TFPower(years, tf, tf_ref=1.5, tf_fraction=1.)(model, fl, i) == full
     half = TFPower(years, tf, tf_ref=1.5, tf_fraction=0.5)(model, fl, i)
@@ -506,6 +505,34 @@ def test_tf_power_reduces_to_the_control_in_a_run():
     stock, ds_stock = _marine_model()
     ours, ds_ours = _marine_model(calving_law=law)
     np.testing.assert_allclose(ds_ours.calving_m3, ds_stock.calving_m3, rtol=1e-8)
+
+
+class _Steps:
+    """A calving law passed through unchanged, keeping each step's flux."""
+
+    def __init__(self, law):
+        self.law, self.q = law, []
+
+    def __call__(self, model, fl, i):
+        q = self.law(model, fl, i)
+        self.q.append((model.t, q))
+        return q
+
+
+@pytest.mark.slow
+def test_gamma_zero_and_a_zero_are_the_stock_run_to_the_bit():
+    """Every step's flux of the run equals the stock law's, in float64 with ==."""
+    yrs = np.arange(0, 2501, 1.)
+    tf = 1.5 + np.sin(yrs / 7.)
+    stock = _Steps(k_calving_law)
+    _, ds_stock = _marine_model(calving_law=stock)
+    for law in (TFPower(yrs, tf, tf_ref=1.5, gamma=0.),
+                TFPower(yrs, tf, tf_ref=1.5, gamma=1.18, tf_fraction=0.)):
+        ours = _Steps(law)
+        _, ds_ours = _marine_model(calving_law=ours)
+        np.testing.assert_array_equal(ours.q, stock.q)
+        np.testing.assert_array_equal(ds_ours.calving_m3, ds_stock.calving_m3)
+        np.testing.assert_array_equal(ds_ours.volume_m3, ds_stock.volume_m3)
 
 
 @pytest.mark.slow

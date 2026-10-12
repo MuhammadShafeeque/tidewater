@@ -11,6 +11,21 @@ At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
+### Fixed
+
+- `tf_power` with `gamma = 0` or `a = 0` now returns the same floating-point
+  number as the constant-k law, as a host's own `k * d * h * w` does. It
+  formed `(k * h) * d * w`, which differs in the last bit in about a third of
+  the calls; a flowline model can carry such a difference into its geometry,
+  so a `gamma = 0` run was close to the host's own run but not equal to it.
+  The law now forms its constant `k(t)` first and multiplies in the order of
+  the constant-k law, in Python and in the IDL code for GloGEM. Other values
+  of `gamma` and `a` change at the level of rounding. A subclass of `TFPower`
+  that overrides `frontal_speed_components` keeps the previous product.
+- `spec/SPEC.md` gives this order for `tf_power`, and
+  `spec/reference_vectors.csv` is regenerated from it: 4 of its 40 `tf_power`
+  vectors change in the last digit.
+
 ## [0.3.0] - 2026-10-11
 
 Version 0.2.0 was tagged and archived on Zenodo but not published on PyPI;

@@ -168,8 +168,13 @@ clipping, and multiplies in this order:
 
     constant:      Q = k_s * d * h * w
 
-    tf_power:      u_c = k_s * scaling(max(TF, 0)) * h
-                   u_m = 0
+`tf_power` keeps the test and the clipping, but forms its constant first and
+multiplies in the order of `constant`, so that `gamma = 0` or `a = 0` gives
+the same number as `constant`:
+
+    tf_power:      k_t = k_s * scaling(max(TF, 0))
+                   Q = max(k_t * d * h * w, 0)
+                   (u_c = k_t * h, u_m = 0)
 
     melt_calving:  u_c = k_s * h
                    u_m = lam * mdot / SEC_IN_DAY
