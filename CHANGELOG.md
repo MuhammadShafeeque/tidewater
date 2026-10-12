@@ -3,19 +3,27 @@
 All notable changes to `tidewater` are listed here, newest first. The format
 follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the
 version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-While the version is below 1.0, a minor release may change names and
-signatures; such a change is listed under "Changed" or "Removed".
+From version 1.0 on, names and signatures change only in a major release;
+such a change is listed under "Changed" or "Removed".
 
 A pull request that changes what a user sees adds a line under "Unreleased".
 At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-10-12
+
 ### Added
 
 - A parameter set for Svalbard, `OceanParams.for_region("svalbard")`: the
   exponent of `tf_power` is 0.9 and the reference period 2016 to 2024; the
   other values are the defaults. The defaults are unchanged.
+
+### Changed
+
+- The package is no longer marked as alpha: from version 1.0 on, names and
+  signatures change only in a major release. The development status on PyPI
+  is "Production/Stable", and the README loses its alpha badge.
 
 ## [1.0.1] - 2026-10-12
 
@@ -90,7 +98,8 @@ The first release.
   and the examples: one glacier through the whole chain on synthetic inputs
   and in each of the three hosts.
 
-[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v1.0.2
 [1.0.1]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v1.0.1
 [0.3.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.3.0
 [0.1.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.1.0
