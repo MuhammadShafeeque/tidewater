@@ -11,6 +11,11 @@ At a release that heading becomes the version and its date.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-12
+
+Version 1.0.0 was tagged and archived on Zenodo but not published on PyPI;
+this release takes its place, with the same code.
+
 ### Fixed
 
 - `tf_power` with `gamma = 0` or `a = 0` now returns the same floating-point
@@ -79,6 +84,7 @@ The first release.
   and the examples: one glacier through the whole chain on synthetic inputs
   and in each of the three hosts.
 
-[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/MuhammadShafeeque/tidewater/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v1.0.1
 [0.3.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.3.0
 [0.1.0]: https://github.com/MuhammadShafeeque/tidewater/releases/tag/v0.1.0
