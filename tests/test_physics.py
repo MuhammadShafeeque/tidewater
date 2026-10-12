@@ -352,8 +352,11 @@ def test_the_sea_level_is_a_parameter():
 def test_parameters_by_region():
     assert OceanParams.for_region('greenland') == DEFAULTS
     assert OceanParams.for_region(' Greenland ') == DEFAULTS
-    assert list(REGIONS) == ['greenland']
+    assert list(REGIONS) == ['greenland', 'svalbard']
     assert set(REGIONS['greenland']) == set(REGIONAL_FIELDS)
+    sv = OceanParams.for_region('svalbard')
+    assert (sv.calving_tf_exponent, sv.ocean_tf_ref_period) == (0.9, (2016, 2024))
+    assert sv.replace(calving_tf_exponent=1.18, ocean_tf_ref_period=(1995, 2014)) == DEFAULTS
     assert OceanParams.for_region('greenland', calving_law='tf_power',
                                   calving_melt_beta=1.61) == DEFAULTS.replace(
         calving_law='tf_power', calving_melt_beta=1.61)
@@ -374,4 +377,4 @@ def test_parameters_by_region():
         register_region('atlantis', calving_gamma=1.5)
     with pytest.raises(ValueError):
         register_region('atlantis', calving_tf_exponent='steep')
-    assert list(REGIONS) == ['greenland']
+    assert list(REGIONS) == ['greenland', 'svalbard']

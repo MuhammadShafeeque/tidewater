@@ -211,3 +211,9 @@ def register_region(name, **values):
 
 register_region('greenland',
                 **{key: getattr(DEFAULTS, key) for key in REGIONAL_FIELDS})
+# The exponent fitted on monthly frontal ablation of 2016 to 2024 with a
+# 1/12 degree reanalysis read in the 0-60 m band; the other values are the
+# defaults
+register_region('svalbard', **{**REGIONS['greenland'],
+                               'calving_tf_exponent': 0.9,
+                               'ocean_tf_ref_period': (2016, 2024)})
