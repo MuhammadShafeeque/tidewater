@@ -8,7 +8,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23296214.svg)](https://doi.org/10.5281/zenodo.23296214)
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](pyproject.toml)
-[![Status: alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#project-status)
 
 <!-- docs: intro -->
 `tidewater` makes the frontal ablation of a marine-terminating glacier depend
@@ -341,7 +340,7 @@ the reason:
 
 ## Project status
 
-The package is in alpha: names and signatures may still change.
+From version 1.0 on, names and signatures change only in a major release.
 
 | Part | State |
 |---|---|

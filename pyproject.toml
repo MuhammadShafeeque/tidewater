@@ -12,7 +12,7 @@ license-files = ["LICENSE"]
 authors = [{ name = "Muhammad Shafeeque" }, { name = "tidewater contributors" }]
 keywords = ["glacier", "frontal ablation", "calving", "ocean thermal forcing"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
